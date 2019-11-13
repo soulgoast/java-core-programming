@@ -30,6 +30,16 @@ public class ObjectUtilsTest {
         Assert.assertEquals("", person.getAddress());
     }
 
+    @Test
+    public void addForNullPropertyUpgrade() throws Exception  {
+        AsiaPerson person = new AsiaPerson();
+        person = ObjectUtils.checkNullAndInitUpgrade(person);
+        Assert.assertEquals("", person.getName());
+        Assert.assertEquals("", person.getAddress());
+        Assert.assertEquals("", person.getColor());
+        Assert.assertEquals("", person.getLanguage());
+    }
+
 }
 
 class Person {
@@ -62,5 +72,28 @@ class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+}
+
+class AsiaPerson  extends Person{
+
+    private String color;
+
+    private String language;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
