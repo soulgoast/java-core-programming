@@ -37,11 +37,11 @@ public class ObjectUtils {
      * @Params obj 可能包含空字符串属性的实体对象
      * @Return T 不包含空字符串属性的实体对象
      */
-    public <T> T checkNullAndInit(@NotNull T obj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
+    public static <T> T checkNullAndInit(@NotNull T obj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
         Class<? extends Object> clazz = obj.getClass();
 
         // 获取实体的所有属性， 返回Filed数组
-        Field[] fields = clazz.getFields();
+        Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             // 可访问私有变量
             field.setAccessible(true);
