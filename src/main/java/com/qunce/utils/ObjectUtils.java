@@ -11,6 +11,7 @@ import com.sun.istack.internal.NotNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Collection;
 
 /**
  * @ClassName ObjectUtils
@@ -71,13 +72,12 @@ public class ObjectUtils {
      * @Params [obj]
      * @Return T
      */
-    public static <T> T checkNullAndInitUpgrade(@NotNull T obj, Class<? extends Object> clazz) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        // "".getClass().getSuperclass().equals(Object.class) true
+    public static void checkNullAndInitUpgrade(@NotNull Object obj, Class<? extends Object> clazz) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         if(clazz.equals(Object.class)) {
-            return obj;
+            return;
         } else {
             checkNullAndInitString(obj, clazz);
-            return checkNullAndInitUpgrade(obj, clazz.getSuperclass());
+            checkNullAndInitUpgrade(obj, clazz.getSuperclass());
         }
     }
 
@@ -120,8 +120,24 @@ public class ObjectUtils {
      * @Params [obj]
      * @Return T
      */
-    public static <T> T checkNullAndInitUpgrade(@NotNull T obj) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkNullAndInitUpgrade(obj, obj.getClass());
+    public static void checkNullAndInitUpgrade(@NotNull Object obj) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        checkNullAndInitUpgrade(obj, obj.getClass());
+    }
+
+    /**
+     * 增加处理集合的能力
+     * @param collection
+     * @throws NoSuchMethodException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
+    public static void checkNullAndInitUpgrade(Collection<? extends Object> collection) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        if(collection != null && collection.size() > 0) {
+            for (Object item : collection) {
+                checkNullAndInitUpgrade(item);
+            }
+        }
     }
 
 }

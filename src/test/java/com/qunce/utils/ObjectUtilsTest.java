@@ -9,8 +9,6 @@ package com.qunce.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * @ClassName ObjectUtilsTest
  * @Description ObjectUtils的测试类
