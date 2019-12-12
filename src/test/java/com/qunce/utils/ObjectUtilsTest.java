@@ -31,7 +31,7 @@ public class ObjectUtilsTest {
     @Test
     public void addForNullPropertyUpgrade() throws Exception  {
         AsiaPerson person = new AsiaPerson();
-        person = ObjectUtils.checkNullAndInitUpgrade(person);
+        // person = ObjectUtils.checkNullAndInitUpgrade(person);
         Assert.assertEquals("", person.getName());
         Assert.assertEquals("", person.getAddress());
         Assert.assertEquals("", person.getColor());
