@@ -17,6 +17,6 @@ package com.qunce.message.mqtt;
  * @ModifyDate 2019/12/13 16:19
  * @Version 1.0
  */
-public interface IMqttTokendEMO {
+public interface IMqttTokenDemo {
 
 }
