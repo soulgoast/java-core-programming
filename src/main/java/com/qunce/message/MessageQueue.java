@@ -7,11 +7,10 @@
 package com.qunce.message;
 
 import java.util.Date;
-import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  * @ClassName MessageQueue
- * @Description TODO
+ * @Description 使用redis列表来维护单个消息队列
  * @Author soul goodman
  * @email m18967896507_1@163.com
  * @Date 2019/12/12 8:50
@@ -20,10 +19,8 @@ import java.util.concurrent.PriorityBlockingQueue;
  */
 public class MessageQueue {
 
-    private PriorityBlockingQueue<Message> messages = new PriorityBlockingQueue<>(10); // 不同topic的消息队列
-
     public void add(Message message) {
-        messages.add(message);
+
     }
 
     private Date date; // 最后更新的时间

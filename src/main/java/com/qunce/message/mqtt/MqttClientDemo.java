@@ -4,21 +4,19 @@
  *
  */
 
-package com.qunce.message;
+package com.qunce.message.mqtt;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
 
 /**
- * @ClassName MQTTServer
+ * @ClassName MqttClientDemo
  * @Description TODO
  * @Author soul goodman
  * @email m18967896507_1@163.com
- * @Date 2019/12/12 14:14
- * @ModifyDate 2019/12/12 14:14
+ * @Date 2019/12/13 15:33
+ * @ModifyDate 2019/12/13 15:33
  * @Version 1.0
  */
-public class MQTTServer {
-
-    public void receive(String message) {
-        System.out.println(message);
-    }
-
+public class MqttClientDemo {
+    MqttClient a = null;
 }

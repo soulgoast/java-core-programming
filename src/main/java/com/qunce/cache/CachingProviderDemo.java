@@ -4,21 +4,18 @@
  *
  */
 
-package com.qunce.message;
+package com.qunce.cache;
 
 /**
- * @ClassName MQTTServer
+ * @ClassName CachingProviderDemo
  * @Description TODO
  * @Author soul goodman
  * @email m18967896507_1@163.com
- * @Date 2019/12/12 14:14
- * @ModifyDate 2019/12/12 14:14
+ * @Date 2019/12/13 11:13
+ * @ModifyDate 2019/12/13 11:13
  * @Version 1.0
  */
-public class MQTTServer {
+public class CachingProviderDemo {
 
-    public void receive(String message) {
-        System.out.println(message);
-    }
 
 }

@@ -4,21 +4,19 @@
  *
  */
 
-package com.qunce.message;
+package com.qunce.message.mqtt;
 
 /**
- * @ClassName MQTTServer
- * @Description TODO
+ * @ClassName IMqttTokendEMO
+ * @Description
+ * 提供一种跟踪异步任务完成的机制。
+ *
  * @Author soul goodman
  * @email m18967896507_1@163.com
- * @Date 2019/12/12 14:14
- * @ModifyDate 2019/12/12 14:14
+ * @Date 2019/12/13 16:19
+ * @ModifyDate 2019/12/13 16:19
  * @Version 1.0
  */
-public class MQTTServer {
-
-    public void receive(String message) {
-        System.out.println(message);
-    }
+public interface IMqttTokendEMO {
 
 }
