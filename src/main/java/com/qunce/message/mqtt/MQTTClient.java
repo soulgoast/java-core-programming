@@ -6,21 +6,15 @@
 
 package com.qunce.message.mqtt;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * @ClassName Subscriber
- * @Description TODO
+ * @ClassName MQTTClient
+ * @Description MQTT服务客户端连接对象
  * @Author soul goodman
  * @email m18967896507_1@163.com
- * @Date 2019/12/13 15:30
- * @ModifyDate 2019/12/13 15:30
+ * @Date 2019/12/16 11:20
+ * @ModifyDate 2019/12/16 11:20
  * @Version 1.0
  */
-public class Subscriber {
-
-    private final static Logger log = LoggerFactory.getLogger(Subscriber.class);
-
+public class MQTTClient {
 
 }
