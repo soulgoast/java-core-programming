@@ -4,11 +4,13 @@
  *
  */
 
-package com.qunce.redis.jedis;
+package com.qunce.message.test;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -23,17 +25,17 @@ import redis.clients.jedis.JedisPubSub;
  * @ModifyDate 2019/12/13 11:01
  * @Version 1.0
  */
+@Component
 public class RedisKeyExpiredListener extends JedisPubSub {
 
     private final static Logger logger = LoggerFactory.getLogger(RedisKeyExpiredListener.class);
 
+    @Autowired
+    private MQTTClient mqttClient;
+
     @Override
     public void onPMessage(String pattern, String channel, String message) {
         System.out.println("onPMessage pattern " + pattern + "" + channel + " " + message);
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
-        Jedis jedis = pool.getResource();
-        String re = jedis.get("notify");
-        System.out.println(re);
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.Charset;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName SubscriberTest
@@ -33,11 +34,20 @@ public class SubscriberTest {
         String userName = "admin";
         String passWord = "public";
 
+
         String clientid = UUID.randomUUID().toString().replaceAll("-", "");
 
         MqttClient mqttClient = new MqttClient(HOST, clientid, new MemoryPersistence());
 
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setUserName(userName);
+        options.setPassword(passWord.toCharArray());
+        options.setMaxInflight(10); // TODO
+        options.setCleanSession(false);
+
         mqttClient.setCallback(new MqttCallbackExtended() {
+            int i = 1;
+
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
                 if(reconnect) {
@@ -47,7 +57,7 @@ public class SubscriberTest {
                 }
 
                 try {
-                    mqttClient.subscribe(TOPIC, 1);
+                    mqttClient.subscribe(TOPIC, 0);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
@@ -57,11 +67,21 @@ public class SubscriberTest {
             public void connectionLost(Throwable cause) {
                 logger.info("连接丢失，异常原因为:");
                 cause.printStackTrace();
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                    logger.info("尝试重新连接");
+                    mqttClient.connect(options);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
+                logger.info("第{}次收到消息", i);
                 logger.info("主题{}，收到消息。消息的ID为{}，内容为{}，QOS为{}", topic, message.getId(), new String(message.getPayload(), Charset.defaultCharset()), message.getQos());
+                i++;
+                int a = 1 / 0;
             }
 
             @Override
@@ -70,11 +90,6 @@ public class SubscriberTest {
             }
         });
 
-        MqttConnectOptions options = new MqttConnectOptions();
-        options.setUserName(userName);
-        options.setPassword(passWord.toCharArray());
-        options.setMaxInflight(10); // TODO
-        options.setCleanSession(false);
         mqttClient.connect(options);
     }
 

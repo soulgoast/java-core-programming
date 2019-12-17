@@ -53,7 +53,7 @@ public class PublisherTest {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-
+                message.getId();
             }
 
             @Override
@@ -65,10 +65,14 @@ public class PublisherTest {
         mqttClient.connect(options);
         MqttTopic mqttTopic = mqttClient.getTopic(TOPIC);
         MqttMessage mqttMessage = new MqttMessage();
-        mqttMessage.setQos(2);
+        mqttMessage.setQos(0);
         mqttMessage.setRetained(false);
+
         mqttMessage.setPayload(message.getBytes());
         MqttDeliveryToken token = mqttTopic.publish(mqttMessage);
+        token.getMessage().getId();
+
+
         token.waitForCompletion();
         logger.info("message is published completely! "+ token.isComplete());
     }
