@@ -64,17 +64,20 @@ public class PublisherTest {
 
         mqttClient.connect(options);
         MqttTopic mqttTopic = mqttClient.getTopic(TOPIC);
-        MqttMessage mqttMessage = new MqttMessage();
-        mqttMessage.setQos(0);
-        mqttMessage.setRetained(false);
 
-        mqttMessage.setPayload(message.getBytes());
-        MqttDeliveryToken token = mqttTopic.publish(mqttMessage);
-        token.getMessage().getId();
+        for (int i = 0; i < 100; i++) {
+            MqttMessage mqttMessage = new MqttMessage();
+            mqttMessage.setQos(1);
+            mqttMessage.setRetained(false);
 
+            mqttMessage.setPayload((message + i).getBytes());
+            MqttDeliveryToken token = mqttTopic.publish(mqttMessage);
+            int messageId = token.getMessageId();
+            System.out.println("消息ID:" + messageId);
+            token.waitForCompletion();
+            logger.info("message is published completely! "+ token.isComplete());
+        }
 
-        token.waitForCompletion();
-        logger.info("message is published completely! "+ token.isComplete());
     }
 
 

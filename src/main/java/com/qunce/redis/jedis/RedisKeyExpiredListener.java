@@ -42,14 +42,14 @@ public class RedisKeyExpiredListener extends JedisPubSub {
     }
 
     public static void main(String[] args) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.11.65"); // 10.8.40.248
         Jedis jedis = pool.getResource();
         jedis.psubscribe(new RedisKeyExpiredListener(), "__keyevent@0__:expired");
     }
 
     @Test
     public void test() {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.11.65");
         Jedis jedis = pool.getResource();
         jedis.set("notify", "你还在吗");
         jedis.expire("notify", 10);
