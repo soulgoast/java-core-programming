@@ -6,13 +6,13 @@
 
 package com.qunce.redis.jedis;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
-import redis.clients.jedis.JedisPubSub;
+import redis.clients.jedis.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @ClassName RedisKeyExpiredListener
@@ -42,17 +42,31 @@ public class RedisKeyExpiredListener extends JedisPubSub {
     }
 
     public static void main(String[] args) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.11.65"); // 10.8.40.248
+/*        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.40.165", 7000, Protocol.DEFAULT_TIMEOUT); // 10.8.40.248
         Jedis jedis = pool.getResource();
+        jedis.psubscribe(new RedisKeyExpiredListener(), "__keyevent@0__:expired");*/
+
+        HostAndPort hostAndPort = new HostAndPort("10.8.40.165", 7000);
+        Set<HostAndPort> hostAndPortSet = new HashSet<>();
+        hostAndPortSet.add(hostAndPort);
+        JedisCluster jedis = new JedisCluster(hostAndPortSet);
         jedis.psubscribe(new RedisKeyExpiredListener(), "__keyevent@0__:expired");
     }
 
     @Test
     public void test() {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.11.65");
+/*        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.8.40.165", 7000, Protocol.DEFAULT_TIMEOUT); // 10.8.40.248
         Jedis jedis = pool.getResource();
         jedis.set("notify", "你还在吗");
-        jedis.expire("notify", 10);
+        jedis.expire("notify", 10);*/
+
+        HostAndPort hostAndPort = new HostAndPort("10.8.40.216", 7000);
+        Set<HostAndPort> hostAndPortSet = new HashSet<>();
+        hostAndPortSet.add(hostAndPort);
+        JedisCluster jedis = new JedisCluster(hostAndPortSet);
+        jedis.set("wh01%dev01%status", "在线");
+        jedis.set("wh01%dev01%message", "{status:success}");
+        jedis.set("wh01%dev01%msgTime", "2020-05-20 11:31:12");
     }
 
 }

@@ -40,6 +40,8 @@ public class JedisSimpleDemo {
         jedis.connect();//连接
 
         // jedis.disconnect();//断开连接
+
+
     }
 
     @Test
