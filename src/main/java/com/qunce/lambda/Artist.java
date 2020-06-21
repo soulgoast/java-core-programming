@@ -6,7 +6,9 @@
 
 package com.qunce.lambda;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -20,11 +22,13 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Artist {
 
     private String name;
 
     private List<String> members;
 
-    private String origin;
+    private String nationality;
 }

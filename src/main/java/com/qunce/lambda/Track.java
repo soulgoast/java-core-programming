@@ -6,6 +6,7 @@
 
 package com.qunce.lambda;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -18,8 +19,11 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
+@AllArgsConstructor
 public class Track {
 
-    private String name;
+    private final String name;
+
+    private final int length;
 
 }
