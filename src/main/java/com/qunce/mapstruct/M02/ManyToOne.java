@@ -6,6 +6,9 @@
 
 package com.qunce.mapstruct.M02;
 
+import org.junit.Test;
+import org.mapstruct.factory.Mappers;
+
 /**
  * @ClassName ManyToOne
  * @Description
@@ -17,5 +20,15 @@ package com.qunce.mapstruct.M02;
  * @Version 1.0
  */
 public class ManyToOne {
+
+    @Test
+    public void test() {
+        Person person = new Person("张三");
+        Address address = new Address("武汉市");
+        AddressMapper addressMapper = Mappers.getMapper(AddressMapper.class);
+        DeliveryAddressDto deliveryAddressDto = addressMapper.personAndAddressToDeliveryAddressDto(person, address);
+        System.out.println(deliveryAddressDto.toString());
+
+    }
 
 }
