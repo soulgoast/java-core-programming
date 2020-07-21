@@ -47,6 +47,7 @@ public class NumberDemo {
         System.out.println(bb.getLeft());
         System.out.println(bb.getMiddle());
         System.out.println(bb.getRight());
+
     }
 
 }
