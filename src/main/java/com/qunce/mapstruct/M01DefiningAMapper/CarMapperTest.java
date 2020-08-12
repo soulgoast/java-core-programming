@@ -29,6 +29,11 @@ public class CarMapperTest {
 
         //then
         System.out.println(carDto.toString());
+
+        Person person = new Person("张三", "武汉");
+        PersonDto personDto = CarMapper.INSTANCE.personToPersonDto(person);
+        System.out.println(personDto);
+
     }
 
 }

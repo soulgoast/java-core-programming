@@ -7,6 +7,7 @@
 package com.qunce.utils.lang3;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,4 +38,15 @@ public class DateUtilsDemo {
         System.out.println(Instant.ofEpochMilli(simpleDateFormat.parse("2020-06-11 14:50:59").getTime()));
     }
 
+    @Test
+    public void test() {
+        System.out.println(0.1 + 0.2 == 0.3);
+        System.out.println(0.3);
+        System.out.println(0.1 + 0.2);
+        System.out.println(0.1);
+        System.out.println(0.2);
+    }
+    /**
+     * nohup java –jar gateway.jar --custom.nacos=10.8.11.66:8848 &
+     */
 }

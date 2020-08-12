@@ -6,6 +6,14 @@
 
 package com.qunce.algorith.sort;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Objects;
+
 /**
  * @ClassName Example
  * @Description 排序算法模板
@@ -47,4 +55,31 @@ public class Example {
         assert isSorted(a);
         show(a);
     }
+
+    @Test
+    public void test() {
+/*        Person person1 = new Person("张三", "武汉");
+        Object[] arr = Arrays.asList(person1, person1 , person1).toArray();*/
+        StringBuilder a = new StringBuilder("abc");
+        Object[] arr = Arrays.asList(a, a , a).toArray();
+        System.out.println(Arrays.asList(arr));
+        a.append("bcd");
+        System.out.println(Arrays.asList(arr));
+
+    }
+
+    @Data
+    @AllArgsConstructor
+    class Person {
+        private String name;
+
+        private String address;
+    }
+
+
+    @Test
+    public void test1() {
+
+    }
+
 }
